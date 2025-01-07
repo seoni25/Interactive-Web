@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #17adcc;
+            height: 300vh;
+        }
+        h1 {
+            font-size:30px;
+            padding: 20px;
+        }
+        .box {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*transition: all 1.5s ease-out;*/
+        }
+        .box img {
+            width: 200px;
+        }
+
+        /*button {
+            padding : 40px 100px;
+            background-color: black;
+            color: white;
+            font-size: 30px;
+            transition : all 0.5s ease-in-out;
+        }
+        button:hover {
+            padding: 45px 120px;
+            background-color: purple;
+        }*/
+    </style>
+    <script>
+        window.onload = () => {
+            const h1 = document.querySelector('h1');
+            const box = document.querySelector('.box');
+            // const button = document.querySelector("button");
+
+            // button.addEventListener("mouseenter", () => {
+            //     console.log(1);
+            //     box.style.top = event.pageY + "px";
+            //     box.style.left = event.pageX + "px";
+            // })
+            console.log(h1);
+
+             let x = 0;
+             let y = 0;
+             let targetX = 0;
+             let targetY = 0;
+             let speed = 0.03;
+
+            window.addEventListener("mousemove", (event)=> {
+                x = event.pageX;
+                y = event.pageY;
+                
+                // box.style.top = y + "px";
+                // box.style.left = x + "px";
+                console.log(event.pageX, event.pageY);
+                h1.innerText = `x: ${event.pageX} y: ${event.pageY}`;
+            });
+
+           
+            const loop = () => {
+                console.log(1);
+
+                targetX += (x - targetX) * speed;
+                targetY += (y - targetY) * speed;
+
+                box.style.top = targetY + "px";
+                box.style.left = targetX + "px";
+                window.requestAnimationFrame(loop);
+            }
+            loop();
+        }
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <div class="box">
+        <img src="./butterfly.gif" alt="나비">
+    </div>
+    <!--<button>
+        버튼
+    </button>-->
+</body>
+</html>
